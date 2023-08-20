@@ -12,19 +12,19 @@
 */
 int main(void)
 {
-int k;
+int i;
 
-for (k = 1; k <= 100; k++)
+for (i = 1; i <= 100; i++)
 {
-if (k % 15 == 0)
+if (i % 15 == 0)
 printf("FizzBuzz");
-else if (k % 3 == 0)
+else if (i % 3 == 0)
 printf("fizz");
-else if (k % 5 == 0)
+else if (i % 5 == 0)
 printf("Buzz");
 else
-printf("%k", k);
-if (k < 100)
+printf("%i", i);
+if (i < 100)
 printf(" ");
 }
 printf("\n");
