@@ -1,1 +1,1 @@
-loop readme
+readme 06 pinter
