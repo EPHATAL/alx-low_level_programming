@@ -7,14 +7,22 @@
 
 int main(void)
 {
+char c;
+
 int i;
 
-for (i = 0; i < 10 || i < 'g'; i++)
+c = 'a';
+i = 0;
+while (i < 10)
 {
-if (i + 10)
 putchar(i + '0');
-else
-putchar(i);
+i++;
+}
+while
+(c <= 'f')
+{
+putchar(c);
+(c++);
 }
 putchar('\n');
 return (0);
