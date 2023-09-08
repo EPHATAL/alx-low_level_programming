@@ -3,88 +3,100 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define ERR_MSG "Error"
+
 /**
-*_puts - strings
-*@str: string to print
-*Return: void
+*is_digit - contains a non-digit char
+*@s: string
+*Return: 0 if a non-digit is found, 1 otherwise
 **/
 
-void _puts(char *str)
+int is_digit(char *s)
 {
 int t = 0;
-while (str[t])
+while (s[t])
 {
-_putchar(str[t]);
+if (s[t] < 0 || s[t] > 9)
+return (0);
 t++;
 }
+return (1);
 }
 
 /**
-*_atoi - string to integer.
+*_strlen - length of string.
 *@s: string
-*Return: integer converted
+*Return: length of the string
 **/
 
-int _atoi(const char *s)
+int _strlen(char *s)
 {
-int sign = 1;
-unsigned long int resp = 0, firstNum, t;
+int t = 0;
 
-for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+while (s[t] != '\0')
 {
-if (s[firstNum] == '_')
-{
-sign *= -1;
-}
-}
-for (t = firstNum; s[t] >= 48 && s[t] <= 57; t++)
-{
-resp *= 10;
-resp += (s[t] - 48);
-}
-return (sign *resp);
-}
-
-
-/**
-*print_int - an integer.
-*@n: int
-*Return: 0
-**/
-
-void print_int(unsigned long int n)
-{
-unsigned long int divisor = 1, t, resp;
-
-for (t = 0; n / divisor > 9; t++, divisor *= 10)
-;
-for (; divisor >= 1; n %= divisor, divisor /= 10)
-{
-resp = n / divisor;
-_putchar('0' + resp);
-}
+t++;
+}return (t);
 }
 
 /**
-*main - entry point.
-*@argc: int
-*@argv: list
-*Return: 0
+*errors - main entry
 **/
 
-int main(int argc, char const *argv[])
+void errors(void)
 {
-
-(void)argc;
-
-if (argc != 3)
-{
-_puts("Error ");
+printf("Error\n");
 exit(98);
 }
 
-print_int(_atoi(argv[1]) * _atoi(argv[2]));
-_putchar('\n');
+/**
+*main - multiplies two postive numbers
+*@argc: argument number
+*@argv: argument array
+*Return: 0
+**/
 
+int main(int argc, char *argv[])
+{
+
+char *s1, *s2;
+int len1, len2, len, t, carry, digit1, digit2, *result, a = 0;
+
+s1 = argv[1], s2 = argv[2];
+if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+errors();
+len1 = _strlen(s1);
+len2 = _strlen(s2);
+len = len1 + len2 + 1;
+result = malloc(sizeof(int) * len);
+if (!result)
+return (1);
+for (t = 0; t <= len1 + len2; t++)
+result[t] = 0;
+for (len1 = len1 - 1; len1 >= 0; len1--)
+{
+digit1 = s1[len1] - '0';
+carry = 0;
+for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+{
+digit2 = s2[len2] - '0';
+carry += result[len1 + len2 + 1] + (digit1 * digit2);
+result[len1 + len2 + 1] = carry % 10;
+carry /= 10;
+}
+if (carry > 0)
+result[len1 + len2 +1] += carry;
+}
+for (t = 0; t < len - 1; t++)
+{
+if (result[t])
+a = 1;
+if (a)
+_putchar(result[t] + '0');
+}
+if (!a)
+_putchar(0);
+_putchar('\n');
+free(result);
 return (0);
 }
