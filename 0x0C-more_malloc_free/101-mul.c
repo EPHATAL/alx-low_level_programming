@@ -4,35 +4,87 @@
 #include <limits.h>
 
 /**
-*main - multiplies two positive numbers
-*@argc: argument for n
-*@argv: args
-*Return: int
+*_puts - strings
+*@str: string to print
+*Return: void
+**/
+
+void _puts(char *str)
+{
+int t = 0;
+while (str[t])
+{
+_putchar(str[t]);
+t++;
+}
+}
+
+/**
+*_atoi - string to integer.
+*@s: string
+*Return: integer converted
+**/
+
+int _atoi(const char *s)
+{
+int sign = 1;
+unsigned long int resp = 0, firstNum, t;
+
+for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+{
+if (s[firstNum] == '_')
+{
+sign *= -1;
+}
+}
+for (t = firstNum; s[t] >= 48 && s[t] <= 57; t++)
+{
+resp *= 10;
+resp += (s[t] - 48);
+}
+return (sign *resp);
+}
+
+
+/**
+*print_int - an integer.
+*@n: int
+*Return: 0
+**/
+
+void print_int(unsigned long int n)
+{
+unsigned long int divisor = 1, t, resp;
+
+for (t = 0; n / divisor > 9; t++, divisor *= 10)
+;
+for (; divisor >= 1; n %= divisor, divisor /= 10)
+{
+resp = n / divisor;
+_putchar('0' + resp);
+}
+}
+
+/**
+*main - entry point.
+*@argc: int
+*@argv: list
+*Return: 0
 **/
 
 int main(int argc, char const *argv[])
 {
-unsigned long mul;
-int t, d;
+
+(void)argc;
 
 if (argc != 3)
 {
-printf("Error\n");
+_puts("Error ");
 exit(98);
 }
 
-for (t = 1; t < argc; t++)
-{
-for (d = 0; argv[t][d] != '\0'; d++)
-{
-if (argv[t][d] > 57 || argv[t][d] < 48)
-{
-printf("Error\n");
-exit (98);
-}
-}
-}
-mul = atoi(argv[1]) * atoi(argv[2]);
-printf("%lu\n", mul);
+print_int(_atoi(argv[1]) * _atoi(argv[2]));
+_putchar('\n');
+
 return (0);
 }
