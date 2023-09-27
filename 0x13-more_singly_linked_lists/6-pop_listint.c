@@ -1,3 +1,5 @@
+#include "lists.h"
+
 /**
 *pop_listint - linked list head node deleted
 *@head: linked list first elelment
@@ -7,18 +9,16 @@
 */
 
 int pop_listint(listint_t **head)
-
 {
-listint_t *temp;
-int num;
+listint_t *node;
+int n;
 
-if (!head || !head)
+if (!head || !*head)
 return (0);
 
-num = (*head)->n;
-temp = (*head)->next;
+node = (*head)->next;
+n = (*head)->n;
 free(*head);
-*head = temp;
-
-return (num);
+*head = node;
+return (n);
 }
