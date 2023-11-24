@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-*clear_bit - sets the value
+*clear_bit - sets the value of a bit to 0 at given index
 *
 *@n: pointer
 *
@@ -11,13 +11,9 @@
 */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-unsigned int t;
-if (index > 63)
+if (index > sizeof(n) * 8)
 return (-1);
 
-t = 1 << index;
-
-if (*n & t)
-*n ^= t;
+*n &= ~(1 << index);
 return (1);
 }
