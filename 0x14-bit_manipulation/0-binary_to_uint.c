@@ -18,7 +18,7 @@ if (!b)
 return (0);
 for (t = 0; b[t] != '\0'; t++)
 	;
-for (t--, base_two = 1, t >= 0; t--, base_two *= 2)
+for (t--, base_two = 1; t >= 0; t--, base_two *= 2)
 {
 if (b[t] != '0' && b[t] != '1')
 {
