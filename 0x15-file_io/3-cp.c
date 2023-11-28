@@ -23,7 +23,7 @@ void error_file(int file_from, int file_to, char *argv[])
 }
 
 /**
- * main - check the code for Holberton School students.
+ * main - check the code
  * @argc: number of arguments.
  * @argv: arguments vector.
  * Return: Always 0.
@@ -58,14 +58,14 @@ int main(int argc, char *argv[])
 	err_close = close(file_from);
 	if (err_close == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close td %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 		exit(100);
 	}
 
 	err_close = close(file_to);
 	if (err_close == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close td %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 		exit(100);
 	}
 	return (0);
