@@ -9,6 +9,7 @@
  * Return: Always EXIT_SUCCESS.
  */
 int main(void)
+
 {
     dlistint_t *head;
     dlistint_t *new;
